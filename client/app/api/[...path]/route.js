@@ -1,7 +1,8 @@
-﻿const RAW_BACKEND_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || '';
+const RAW_BACKEND_BASE = process.env.API_URL || process.env.NEXT_PUBLIC_API_URL || '';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
+export const maxDuration = 60;
 
 function normalizeBackendBase(raw) {
   if (!raw) return null;
@@ -69,7 +70,7 @@ async function proxyRequest(request, context) {
       method: request.method,
       headers: forwardHeaders,
       body,
-      redirect: 'manual',
+      redirect: 'follow',
       cache: 'no-store',
     });
 
