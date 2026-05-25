@@ -75,6 +75,10 @@ async function proxyRequest(request, context) {
     });
 
     const responseHeaders = new Headers(upstream.headers);
+
+    responseHeaders.delete('content-encoding');
+    responseHeaders.delete('content-length');
+
     return new Response(upstream.body, {
       status: upstream.status,
       statusText: upstream.statusText,
