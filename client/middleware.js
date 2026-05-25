@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
-import { getSessionCookieName } from '@/lib/auth/cookies';
+const SESSION_COOKIE_NAME = 'college_session';
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
   if (!pathname.startsWith('/dashboard')) return NextResponse.next();
 
-  const token = request.cookies.get(getSessionCookieName())?.value;
+  const token = request.cookies.get(SESSION_COOKIE_NAME)?.value;
   if (!token) {
     const loginUrl = new URL('/auth/login', request.url);
     loginUrl.searchParams.set('from', pathname);
