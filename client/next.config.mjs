@@ -1,15 +1,4 @@
-/** @type {import('next').NextConfig} */
-const apiUrl = process.env.API_URL || 'http://localhost:5000';
-
-const nextConfig = {
-  async rewrites() {
-    return [
-      {
-        source: '/api/:path*',
-        destination: `${apiUrl}/api/:path*`,
-      },
-    ];
-  },
-};
+﻿/** @type {import('next').NextConfig} */
+const nextConfig = {};
 
 export default nextConfig;
